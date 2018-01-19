@@ -18,15 +18,19 @@ async def on_ready():
     print("RazBot Connected")
 
 # Commands
+
+# !ping is used to check to see if the bot is active, bot will say "pong" in the chat
 @bot.command(pass_context=True)
 async def ping(ctx):
     await bot.say("pong")
 
+# !leave will tell the bot to leave the server (logout)
 @bot.command(pass_context=True)
 async def leave(ctx):
     print("Disconnected")
     await bot.close()
 
+# !joinV + channelID tells bot to join a voice channel with that channelID
 @bot.command(pass_context=True)
 async def joinV(ctx):
     cmd,chan = ctx.message.content.split(' ')
@@ -34,6 +38,7 @@ async def joinV(ctx):
     print("Joined: " + channelToJoin.name)
     await bot.join_voice_channel(channelToJoin)
 
+# !move + mention + channelID tells bot to move the mentioned user to a voice channel with the specified channelID
 @bot.command(pass_context=True)
 async def move(ctx):
     text = ctx.message.content
@@ -46,6 +51,7 @@ async def move(ctx):
     print("Moved: " + userInfo.name + " -> " + channel.name)
     await bot.move_member(userInfo, channel)
 
+# !GetUser prints the name of a mentioned user to the console (used for debug)
 @bot.command(pass_context=True)
 async def GetUser(ctx):
     text = ctx.message.content
@@ -54,6 +60,7 @@ async def GetUser(ctx):
     member = ctx.message.mentions[0]
     print(member)
 
+# !NextRound shuffles users in voice channels based on the userData list in data.py, as well as the current round number (also found in data.py)
 @bot.command(pass_context=True)
 async def NextRound(ctx):
     channels = ["",""]
