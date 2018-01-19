@@ -69,6 +69,11 @@ async def GetUser(ctx):
 async def NextRound(ctx):
     sender = ctx.message.author
     if (sender.top_role.name == 'Manager'):
+        locRN = data.roundNum
+        locRN += 1
+        rNm = "" + str(locRN)
+        print("Started Round: " + rNm)
+        await bot.say("Started Round: " + rNm)
         channels = ["",""]
         for x in range(len(data.userdata)):
             member,channels[0],channels[1] = data.userdata[x].split(',')
