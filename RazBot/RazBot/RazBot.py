@@ -82,6 +82,7 @@ async def NextRound(ctx):
         
         data.roundNum += 1
 
+# !MoveAll will move all users connected to any voice channel to be moved into the General voice channel
 @bot.command(pass_context=True)
 async def MoveAll(ctx):
     sender = ctx.message.author
@@ -108,6 +109,7 @@ async def MoveAll(ctx):
             channel = bot.get_channel(data.generalID)
             await bot.move_member(m,channel)
 
+# !CheckUser will print the name of the sender if the sender is a Manager (used for debug)
 @bot.command(pass_context=True)
 async def CheckUser(ctx):
     sender = ctx.message.author
