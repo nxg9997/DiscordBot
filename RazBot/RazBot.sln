@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "RazBot", "RazBot\RazBot.pyproj", "{74DC1C99-9E91-4A77-BD5C-5F10ADE3F921}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{74DC1C99-9E91-4A77-BD5C-5F10ADE3F921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74DC1C99-9E91-4A77-BD5C-5F10ADE3F921}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF4256F2-2E16-4238-9A52-44035C85D633}
+	EndGlobalSection
+EndGlobal
