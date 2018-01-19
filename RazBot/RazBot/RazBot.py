@@ -76,4 +76,28 @@ async def NextRound(ctx):
         
     data.roundNum += 1
 
+@bot.command(pass_context=True)
+async def MoveAll(ctx):
+    voiceList = list()
+    voiceList.append(bot.get_channel(data.generalID))
+    voiceList.append(bot.get_channel(data.standardAID))
+    voiceList.append(bot.get_channel(data.standardBID))
+    voiceList.append(bot.get_channel(data.standardCID))
+    voiceList.append(bot.get_channel(data.standardDID))
+    voiceList.append(bot.get_channel(data.doublesAID))
+    voiceList.append(bot.get_channel(data.doublesBID))
+    voiceList.append(bot.get_channel(data.doublesCID))
+    voiceList.append(bot.get_channel(data.doublesDID))
+
+    userList = list()
+    for x in range(len(voiceList)):
+        members = voiceList[x].voice_members
+        for y in range(len(members)):
+            userList.append(members[y])
+
+    for m in userList:
+        print("Moved: " + m.name + " -> General")
+        channel = bot.get_channel(data.generalID)
+        await bot.move_member(m,channel)
+
 bot.run("NDAzNzM3OTQyNTUzNTI2Mjcz.DULqmA.M9aEeIvv34Mj7KvdU2aWMklwCtc")
