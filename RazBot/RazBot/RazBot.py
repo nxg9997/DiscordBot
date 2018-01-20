@@ -74,9 +74,9 @@ async def NextRound(ctx):
         rNm = "" + str(locRN)
         print("Started Round: " + rNm)
         await bot.say("Started Round: " + rNm)
-        channels = ["",""]
+        channels = ["","","","","","","","","","","","","","","","","","",""]
         for x in range(len(data.userdata)):
-            member,channels[0],channels[1] = data.userdata[x].split(',')
+            member,channels[0],channels[1],channels[2],channels[3],channels[4],channels[5],channels[6],channels[7],channels[8],channels[9],channels[10],channels[11],channels[12],channels[13] = data.userdata[x].split(',')
             # print(member)
             # print(channels[data.roundNum])
             mem = discord.utils.get(ctx.message.server.members, name=member)
