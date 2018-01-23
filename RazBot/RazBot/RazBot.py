@@ -68,7 +68,7 @@ async def GetUser(ctx):
     member = ctx.message.mentions[0]
     print(member)
 
-# !NextRound shuffles users in voice channels based on the userData list in data.py, as well as the current round number (also found in data.py)
+# !NextRound shuffles users in voice channels based on the userData list in data.py, as well as the current round number (also found in data.py) **OLD VERSION, DO NOT USE**
 @bot.command(pass_context=True)
 async def NextRoundv1(ctx):
     sender = ctx.message.author
@@ -192,5 +192,5 @@ app.addButtons(["Start", "Leave"], press, colspan=2)
 app.go()
 '''
 
-token = input('Enter the Bot Token: ')
-bot.run(token);
+token = input('Enter the Bot Token: ') # prompts user to enter the bot's api token
+bot.run(token); # starts the bot
