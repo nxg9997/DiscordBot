@@ -16,3 +16,5 @@ doublesCID = '403960616571764746'
 doublesDID = '403960651816632330'
 
 roundNum = 0
+
+token = ""; //add token here

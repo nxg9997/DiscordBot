@@ -121,4 +121,4 @@ async def CheckUser(ctx):
     if (sender.top_role.name == 'Manager'):
         print(sender.name)
 
-bot.run("NDAzNzM3OTQyNTUzNTI2Mjcz.DULqmA.M9aEeIvv34Mj7KvdU2aWMklwCtc")
+bot.run(data.token);
