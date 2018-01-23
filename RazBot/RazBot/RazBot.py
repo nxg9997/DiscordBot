@@ -4,6 +4,10 @@ import data
 from discord.ext.commands import Bot
 from discord.ext import commands
 
+'''
+from appJar import gui
+'''
+
 client = discord.Client()
 bot_prefix = "!"
 bot = commands.Bot(command_prefix=bot_prefix)
@@ -106,6 +110,7 @@ async def NextRound(ctx):
 
         data.roundNum += 1
 
+# used to test the !NextRound command using test variables
 @bot.command(pass_context=True)
 async def TestRound(ctx):
     sender = ctx.message.author
@@ -151,6 +156,11 @@ async def MoveAll(ctx):
             channel = bot.get_channel(data.generalID)
             await bot.move_member(m,channel)
 
+# checks to see if the bot has elevated permissions (attempts to delete text channel)
+@bot.command(pass_context=True)
+async def TestPerm(ctx):
+    bot.delete_channel('405489719074357248')
+
 # !CheckUser will print the name of the sender if the sender is a Manager (used for debug)
 @bot.command(pass_context=True)
 async def CheckUser(ctx):
@@ -158,4 +168,29 @@ async def CheckUser(ctx):
     if (sender.top_role.name == 'Manager'):
         print(sender.name)
 
-bot.run(data.token);
+'''
+# functions for the gui buttons
+def press(btnName):
+    print(btnName)
+    if (btnName == "Start"):
+        token = app.getEntry("tokenEnt")
+        bot.run(token);
+    elif (btnName == "Leave"):
+        exit()
+
+def pressLeave(btnName):
+    print(btnName)
+    exit()
+
+# creates gui
+app = gui("RazBot")
+# app.setIcon("razbotIcon.gif")
+app.addLabel("tokenLab", "Bot Token:", 0, 0)
+app.addEntry("tokenEnt", 0, 1)
+app.addButtons(["Start", "Leave"], press, colspan=2)
+# app.addButton("Leave", pressLeave, colspan=2)
+app.go()
+'''
+
+token = input('Enter the Bot Token: ')
+bot.run(token);
