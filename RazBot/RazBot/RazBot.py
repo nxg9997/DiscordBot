@@ -66,7 +66,7 @@ async def GetUser(ctx):
 
 # !NextRound shuffles users in voice channels based on the userData list in data.py, as well as the current round number (also found in data.py)
 @bot.command(pass_context=True)
-async def NextRound(ctx):
+async def NextRoundv1(ctx):
     sender = ctx.message.author
     if (sender.top_role.name == 'Manager'):
         locRN = data.roundNum
@@ -85,6 +85,43 @@ async def NextRound(ctx):
             print("Moved: " + member + " -> " + channel.name)
             await bot.move_member(mem, channel)
         
+        data.roundNum += 1
+
+# !NextRound will move players to the appropriate voice channels when called. Increments the round number each time
+@bot.command(pass_context=True)
+async def NextRound(ctx):
+    sender = ctx.message.author
+    if (sender.top_role.name == 'Manager' and data.roundNum < data.MAXROUNDS):
+        locRN = data.roundNum;
+        locRN += 1
+        rNm = "" + str(locRN)
+        print("Started Round: " + rNm)
+        await bot.say("Started Round: " + rNm)
+        players = list(data.userDataDict.keys())
+        for x in range(len(players)):
+            mem = discord.utils.get(ctx.message.server.members, name=players[x])
+            channel = bot.get_channel(data.userDataDict[players[x]][data.roundNum])
+            print("Moved: " + mem.name + " -> " + channel.name)
+            await bot.move_member(mem, channel)
+
+        data.roundNum += 1
+
+@bot.command(pass_context=True)
+async def TestRound(ctx):
+    sender = ctx.message.author
+    if (sender.top_role.name == 'Manager' and data.roundNum < data.MAXTEST):
+        locRN = data.roundNum;
+        locRN += 1
+        rNm = "" + str(locRN)
+        print("Started Round: " + rNm)
+        await bot.say("Started Round: " + rNm)
+        players = list(data.dictTest.keys())
+        for x in range(len(players)):
+            mem = discord.utils.get(ctx.message.server.members, name=players[x])
+            channel = bot.get_channel(data.dictTest[players[x]][data.roundNum])
+            print("Moved: " + mem.name + " -> " + channel.name)
+            await bot.move_member(mem, channel)
+
         data.roundNum += 1
 
 # !MoveAll will move all users connected to any voice channel to be moved into the General voice channel
