@@ -172,6 +172,16 @@ async def CheckUser(ctx):
         print(sender.name)
 
 
+@bot.event
+async def on_message(message):
+    sender = message.author
+    if (sender.id != '403737942553526273'):
+        if (sender.id == '160065743856074752'):
+            await bot.send_message(message.channel, 'Memes')
+            #await bot.say('Memes')
+
+        if (len(message.mentions) != 0):
+            await bot.send_message(message.channel, '<@%s>' % message.mentions[0].id)
 '''
 # mute all
 @bot.command(pass_context=True)
