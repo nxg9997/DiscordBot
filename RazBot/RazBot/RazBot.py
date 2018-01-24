@@ -135,15 +135,15 @@ async def MoveAll(ctx):
     sender = ctx.message.author
     if (sender.top_role.name == 'Manager'):
         voiceList = list()
-        voiceList.append(bot.get_channel(data.generalID))
-        voiceList.append(bot.get_channel(data.standardAID))
-        voiceList.append(bot.get_channel(data.standardBID))
-        voiceList.append(bot.get_channel(data.standardCID))
-        voiceList.append(bot.get_channel(data.standardDID))
-        voiceList.append(bot.get_channel(data.doublesAID))
-        voiceList.append(bot.get_channel(data.doublesBID))
-        voiceList.append(bot.get_channel(data.doublesCID))
-        voiceList.append(bot.get_channel(data.doublesDID))
+        voiceList.append(bot.get_channel(data.g))
+        voiceList.append(bot.get_channel(data.sA))
+        voiceList.append(bot.get_channel(data.sB))
+        voiceList.append(bot.get_channel(data.sC))
+        voiceList.append(bot.get_channel(data.sD))
+        voiceList.append(bot.get_channel(data.dA))
+        voiceList.append(bot.get_channel(data.dB))
+        voiceList.append(bot.get_channel(data.dC))
+        voiceList.append(bot.get_channel(data.dD))
 
         userList = list()
         for x in range(len(voiceList)):
@@ -156,6 +156,9 @@ async def MoveAll(ctx):
             channel = bot.get_channel(data.generalID)
             await bot.move_member(m,channel)
 
+
+
+
 # checks to see if the bot has elevated permissions (attempts to delete text channel)
 @bot.command(pass_context=True)
 async def TestPerm(ctx):
@@ -167,6 +170,32 @@ async def CheckUser(ctx):
     sender = ctx.message.author
     if (sender.top_role.name == 'Manager'):
         print(sender.name)
+
+
+'''
+# mute all
+@bot.command(pass_context=True)
+async def MuteAll(ctx):
+    sender = ctx.message.author
+    if (sender.top_role.name == "Manager"):
+        channel = bot.get_channel(data.pG)
+        members = channel.voice_members
+        print(len(members))
+        for m in members:
+            print("Muted: " + m.name)
+            await bot.server_voice_state(m,mute=True)
+
+# unmute all
+@bot.command(pass_context=True)
+async def UnmuteAll(ctx):
+    sender = ctx.message.author
+    if (sender.top_role.name == "Manager"):
+        channel = bot.get_channel(data.pG)
+        members = channel.voice_members
+        for m in range(len(members)):
+            print("Unmuted: " + members[m].name)
+            await bot.server_voice_state(members[m],mute=False)
+'''
 
 '''
 # functions for the gui buttons

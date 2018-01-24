@@ -24,6 +24,9 @@
     <Compile Include="data.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataGen.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="RazBot.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

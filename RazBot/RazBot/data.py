@@ -21,6 +21,7 @@ userdataTest = ["RazExtra,403960273897259030,403960616571764746","Razeki,4039603
 REList = [testGen, test2]
 RAZList = [test2, testGen]
 dictTest = dict([('RazExtra', [testGen, test2]), ('Razeki', [test2, testGen])])
+pG = '405481623371513858'
 
 # actual player data
 userDataDict = dict([('Jinx', [sB, sB, sD, sC, sC, sD, dD, dA, sD, dA, sA, sC]), ('TheShmurph', [sD, sC, sB, dC, dB, sD, sD, dB, sB, dC, dD, sD]), ('SugarmanZ', [dC, dB, dC, sB, sC, sB, dD, dD, sC, sC, sC, dD]), ('Gronk', [dB, dD, dA, sA, sB, dB, sA, sD, sA, dB, sD, sA]), ('mthurrott', [dB, dC, dC, dB, dD, dC, sD, sB, dC, sA, sB, sC]), ('Squatchy', [sA, sA, sC, dB, dC, sA, sB, sA, dB, sA, dA, sA]), ('CaptaınGlac1er ߷', [dA, dA, dA, dC, dB, dA, sA, sD, sC, sB, sB, sB]), ('Mongoose', [dA, dB, dD, sC, sC, sB, sB, sD, dD, dD, sC, dD]), ('Medalix', [sC, sC, sD, sD, sB, sB, dC, sC, sA, dC, dB, sA]), ('Jet', [sB, sA, sB, sC, sA, dC, sA, sB, dD, dA, sC, sD]), ('mundjame', [dC, dA, dB, dA, dC, dB, sC, sB, sC, sD, sB, dB]), ('Jesse', [sB, sC, sC, sA, sD, sA, dB, dB, sB, dB, dC, sC]), ('MimiKe', [sA, sA, sA, sD, sD, sD, dA, dA, dC, sB, sA, dC]), ('Whitebark', [sA, sD, sB, dA, dA, dA, sC, sA, sB, sA, dA, dA]), ('AlgoRhythmZ', [sD, sB, sD, sA, sA, dD, dB, dC, dA, sB, dC, sD]), ('Jake007', [sC, sB, sA, sB, sD, sC, dA, dC, sD, sC, sA, dB]), ('droseum20', [sD, sD, sC, sB, sB, sA, dC, sC, dB, sC, dD, sB]), ('mxs5683', [dD, dC, dB, sD, sA, sC, sD, dD, dA, dD, sD, dA]), ('GuyWhoDidThatThing', [sC, sD, sA, dD, dA, sC, sB, sA, sD, sD, dB, sC])]) # ('', list())
