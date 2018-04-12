@@ -2,7 +2,7 @@
 # Data to be used by the discord bot
 
 # channel IDs
-g = '405397941646524418'
+g = '406691195713224740'
 sA = '405403200603029516'
 sB = '405403239786217472'
 sC = '405403276692029440'
@@ -24,9 +24,12 @@ dictTest = dict([('RazExtra', [testGen, test2]), ('Razeki', [test2, testGen])])
 pG = '405481623371513858'
 
 # actual player data
-userDataDict = dict([('Jinx', [sB, sB, sD, sC, sC, sD, dD, dA, sD, dA, sA, sC]), ('TheShmurph', [sD, sC, sB, dC, dB, sD, sD, dB, sB, dC, dD, sD]), ('SugarmanZ', [dC, dB, dC, sB, sC, sB, dD, dD, sC, sC, sC, dD]), ('Gronk', [dB, dD, dA, sA, sB, dB, sA, sD, sA, dB, sD, sA]), ('mthurrott', [dB, dC, dC, dB, dD, dC, sD, sB, dC, sA, sB, sC]), ('Squatchy', [sA, sA, sC, dB, dC, sA, sB, sA, dB, sA, dA, sA]), ('CaptaınGlac1er ߷', [dA, dA, dA, dC, dB, dA, sA, sD, sC, sB, sB, sB]), ('Mongoose', [dA, dB, dD, sC, sC, sB, sB, sD, dD, dD, sC, dD]), ('Medalix', [sC, sC, sD, sD, sB, sB, dC, sC, sA, dC, dB, sA]), ('Jet', [sB, sA, sB, sC, sA, dC, sA, sB, dD, dA, sC, sD]), ('mundjame', [dC, dA, dB, dA, dC, dB, sC, sB, sC, sD, sB, dB]), ('Jesse', [sB, sC, sC, sA, sD, sA, dB, dB, sB, dB, dC, sC]), ('MimiKe', [sA, sA, sA, sD, sD, sD, dA, dA, dC, sB, sA, dC]), ('Whitebark', [sA, sD, sB, dA, dA, dA, sC, sA, sB, sA, dA, dA]), ('AlgoRhythmZ', [sD, sB, sD, sA, sA, dD, dB, dC, dA, sB, dC, sD]), ('Jake007', [sC, sB, sA, sB, sD, sC, dA, dC, sD, sC, sA, dB]), ('droseum20', [sD, sD, sC, sB, sB, sA, dC, sC, dB, sC, dD, sB]), ('mxs5683', [dD, dC, dB, sD, sA, sC, sD, dD, dA, dD, sD, dA]), ('GuyWhoDidThatThing', [sC, sD, sA, dD, dA, sC, sB, sA, sD, sD, dB, sC])]) # ('', list())
+userDataDict = dict([('Jinx', [sB, sB, sD, sC, sC, sD, dD, dA, sD, dA, sA, sC]), ('TheShmurph', [sD, sC, sB, dC, dB, sD, sD, dB, sB, dC, dD, sD]), ('SugarmanZ', [sB, dB, sD, sB, sC, sB, sD, dD, sC, sC, sC, sD]), ('Gronk', [dB, sB, dA, sA, sB, dB, sA, sD, sA, sD, sD, sA]), ('mthurrott', [sA, sB, dC, dB, sC, sD, sD, sB, sD, sA, sB, sC]), ('Squatchy', [sA, sA, sC, dB, sA, sA, sB, sA, dB, sA, dA, sA]), ('Based_Dorf', [dA, dA, dA, sC, dB, dA, sA, sD, sA, sB, sB, sB]), ('Mongoose', [dA, dB, sB, sC, sC, sB, sB, sD, sB, dD, sC, sD]), ('Medalix', [sC, sC, sD, sD, sB, sB, sC, sC, sA, dC, dB, sA]), ('Jet', [sB, sA, sB, sC, sA, dC, sA, sB, dD, dA, sC, sD]), ('mundjame', [sD, dA, dB, dA, dB, dB, sC, sB, sC, sD, sB, dB]), ('Jesse', [sB, sC, sC, sA, sD, sA, dB, sC, sB, dC, sA, sC]), ('MimiKe', [sA, sA, sA, sD, sD, sD, dA, sB, sC, sB, sA, sB]), ('Whitebark', [sA, sD, sB, dA, dA, dA, sC, sA, sB, sA, dA, dA]), ('AlgoRhythmZ', [sD, sB, sD, sA, sA, sD, dB, dC, dA, sB, sC, sD]), ('Jake007', [sC, sB, sA, sB, sD, sC, dA, dC, sD, sC, sA, dB]), ('droseum20', [sD, sD, sC, sB, sB, sA, sA, sC, dB, sC, sD, sB]), ('mxs5683', [sD, sC, dB, sD, sA, sC, sD, dD, dA, dD, sD, dA]), ('GuyWhoDidThatThing', [sC, sD, sA, sC, dA, sC, sB, sA, sD, sD, dB, sC]), ('CaptaınGlac1er ߷', [dA, dA, dA, dA, dA, dA, dA, dC, dA, dC, dA, dA]), ('Soopy', [dB, dB, dB, dB, dB, dB, dB, dD, dB, dD, dB, dB,])]) # ('', list())
 
-roundNum = 0
+roundNum = 2
 MAXROUNDS = 12
 MAXTEST = 2
 
+player = None
+
+vc = None

@@ -1,6 +1,8 @@
 # imports
 import discord
 import data
+import asyncio
+import youtube_dl
 from discord.ext.commands import Bot
 from discord.ext import commands
 
@@ -31,18 +33,71 @@ async def ping(ctx):
 # !leave will tell the bot to leave the server (logout)
 @bot.command(pass_context=True)
 async def leave(ctx):
+    print("in leave")
+    data.vc = None
+    data.player = None
+    if (ctx.message.author.id == '83713238620966912'):
+        print("is nate")
+        await bot.close()
+    '''
     sender = ctx.message.author
-    if (sender.top_role.name == 'Manager'):
+    canUse = False;
+    for r in ctx.message.author.roles:
+        if r == 'BotMaster':
+            canUse = True
+    if (canUse):
         print("Disconnected")
         await bot.close()
+        '''
 
 # !joinV + channelID tells bot to join a voice channel with that channelID
 @bot.command(pass_context=True)
 async def joinV(ctx):
+    # cmd,chan = ctx.message.content.split(' ')
+    canUse = False;
+    for r in ctx.message.author.roles:
+        if r.name == 'BotMaster':
+            canUse = True
+    if (canUse):
+        channelToJoin = bot.get_channel(ctx.message.author.voice_channel.id)
+        print("Joined: " + channelToJoin.name)
+        if (data.vc == None):
+            data.vc = await bot.join_voice_channel(channelToJoin)
+        else:
+            await data.vc.move_to(channelToJoin)
+
+# !joinV + channelID tells bot to join a voice channel with that channelID
+@bot.command(pass_context=True)
+async def joinVD(ctx):
     cmd,chan = ctx.message.content.split(' ')
-    channelToJoin = bot.get_channel(chan)
-    print("Joined: " + channelToJoin.name)
-    await bot.join_voice_channel(channelToJoin)
+    canUse = False;
+    for r in ctx.message.author.roles:
+        if r.name == 'BotMaster':
+            canUse = True
+    if (canUse):
+        try:
+            channelToJoin = bot.get_channel(chan)
+            print("Joined: " + channelToJoin.name)
+            if (data.vc == None):
+                await bot.join_voice_channel(channelToJoin)
+            else:
+                await ctx.message.server.voice_client.move_to(channelToJoin)
+        except Exception as e:
+            print("already connected")
+
+# !joinV + channelID tells bot to join a voice channel with that channelID
+@bot.command(pass_context=True)
+async def leaveV(ctx):
+    canUse = False;
+    for r in ctx.message.author.roles:
+        if r.name == 'BotMaster':
+            canUse = True
+    if (canUse):
+        try:
+            await bot.voice_client_in(ctx.message.server).disconnect()
+            data.vc = None
+        except Exception as e:
+            print("error in leaveV")
 
 # !move + mention + channelID tells bot to move the mentioned user to a voice channel with the specified channelID
 @bot.command(pass_context=True)
@@ -122,10 +177,13 @@ async def TestRound(ctx):
         await bot.say("Started Round: " + rNm)
         players = list(data.dictTest.keys())
         for x in range(len(players)):
-            mem = discord.utils.get(ctx.message.server.members, name=players[x])
-            channel = bot.get_channel(data.dictTest[players[x]][data.roundNum])
-            print("Moved: " + mem.name + " -> " + channel.name)
-            await bot.move_member(mem, channel)
+            try:
+                mem = discord.utils.get(ctx.message.server.members, name=players[x])
+                channel = bot.get_channel(data.dictTest[players[x]][data.roundNum])
+                print("Moved: " + mem.name + " -> " + channel.name)
+                await bot.move_member(mem, channel)
+            except:
+                print("exception!")
 
         data.roundNum += 1
 
@@ -134,6 +192,7 @@ async def TestRound(ctx):
 async def MoveAll(ctx):
     sender = ctx.message.author
     if (sender.top_role.name == 'Manager'):
+        print("manager!")
         voiceList = list()
         voiceList.append(bot.get_channel(data.g))
         voiceList.append(bot.get_channel(data.sA))
@@ -153,7 +212,7 @@ async def MoveAll(ctx):
 
         for m in userList:
             print("Moved: " + m.name + " -> General")
-            channel = bot.get_channel(data.generalID)
+            channel = bot.get_channel(data.g)
             await bot.move_member(m,channel)
 
 
@@ -172,6 +231,78 @@ async def CheckUser(ctx):
         print(sender.name)
 
 
+@bot.command(pass_context=True)
+async def PlayYT(ctx):
+    canUse = False;
+    for r in ctx.message.author.roles:
+        if r.name == 'BotMaster':
+            canUse = True
+    if (canUse):
+        if data.player != None:
+            data.player.stop()
+        msg = ctx.message.content
+        cmd,url = ctx.message.content.split(' ')
+        print(url)
+        opts = {
+                'default_search': 'auto',
+                'quiet': True,
+            }
+        voice_channel = bot.get_channel(ctx.message.author.voice_channel.id)
+    
+       # data.vc = bot.voice_client_in(ctx.message.server)
+        data.player = await data.vc.create_ytdl_player(url, ytdl_options=opts)
+        data.player.volume = 0.25
+        data.player.start()
+
+@bot.command(pass_context=True)
+async def StopYT(ctx):
+    canUse = False;
+    for r in ctx.message.author.roles:
+        if r.name == 'BotMaster':
+            canUse = True
+    if (canUse):
+        if data.player != None:
+            data.player.stop()
+
+@bot.command(pass_context=True)
+async def FixBot(ctx):
+    data.vc = bot.voice_client_in(ctx.message.server)
+    data.vc.disconnect()
+'''
+
+@commands.command(pass_context=True, no_pm=True)
+    async def play(self, ctx, *, song : str):
+        """Plays a song.
+        If there is a song currently in the queue, then it is
+        queued until the next song is done playing.
+        This command automatically searches as well from YouTube.
+        The list of supported sites can be found here:
+        https://rg3.github.io/youtube-dl/supportedsites.html
+        """
+        state = self.get_voice_state(ctx.message.server)
+        opts = {
+            'default_search': 'auto',
+            'quiet': True,
+        }
+
+        if state.voice is None:
+            success = await ctx.invoke(self.summon)
+            await self.bot.say("Loading the song please be patient..")
+            if not success:
+                return
+
+        try:
+            player = await state.voice.create_ytdl_player(song, ytdl_options=opts, after=state.toggle_next)
+        except Exception as e:
+            fmt = 'An error occurred while processing this request: ```py\n{}: {}\n```'
+            await self.bot.send_message(ctx.message.channel, fmt.format(type(e).__name__, e))
+        else:
+            player.volume = 0.6
+            entry = VoiceEntry(ctx.message, player)
+            await self.bot.say('Enqueued ' + str(entry))
+            await state.songs.put(entry)
+
+
 @bot.event
 async def on_message(message):
     sender = message.author
@@ -180,8 +311,9 @@ async def on_message(message):
             await bot.send_message(message.channel, 'Memes')
             #await bot.say('Memes')
 
-        if (len(message.mentions) != 0):
-            await bot.send_message(message.channel, '<@%s>' % message.mentions[0].id)
+        # if (len(message.mentions) != 0):
+           # await bot.send_message(message.channel, '<@%s>' % message.mentions[0].id)
+           '''
 '''
 # mute all
 @bot.command(pass_context=True)
